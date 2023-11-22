@@ -61,5 +61,6 @@ stages:
                 azureSubscription: 'cicd-sp'
                 appType: 'functionAppLinux'
                 appName: 'testhrfapp'
-                package:  $(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip
+                package:  '$(Pipeline.Workspace)/drop/build$(Build.BuildId).zip'
+                #$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip
                #runtimeStack: 'PYTHON|3.9'
