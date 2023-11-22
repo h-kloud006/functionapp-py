@@ -20,7 +20,7 @@ stages:
   - stage: Build
     jobs:
     - job: Build
-      displayName:  Prod
+      displayName:  Build stage
       steps:
        - task: UsePythonVersion@0
          displayName: "Setting Python version to 3.7 as required by functions"
