@@ -58,8 +58,8 @@ stages:
             - task: AzureFunctionApp@1
               displayName: Deploy to dev
               inputs:
-              azureSubscription: 'cicd-sp'
-              appType: 'functionAppLinux'
-              appName: 'testhrfapp'
-              package:  $(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip
+                azureSubscription: 'cicd-sp'
+                appType: 'functionAppLinux'
+                appName: 'testhrfapp'
+                package:  $(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip
                #runtimeStack: 'PYTHON|3.9'
