@@ -48,9 +48,8 @@ stages:
   - stage: DEV
     dependsOn: Build
     jobs:
-    - job: Prod_Deployment
-    - displayName: Prod_deployment
     - deployment: Approval_Task
+      displayName: Prod_deployment
       environment: Approval
       steps:
        - task: AzureFunctionApp@1
