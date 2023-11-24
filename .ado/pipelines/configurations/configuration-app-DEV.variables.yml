@@ -1,0 +1,4 @@
+variables:
+  # DEV Environment
+  APP_NAME: "testhrfapp"
+  SERVICECONNECTION_RG: cicd-sp

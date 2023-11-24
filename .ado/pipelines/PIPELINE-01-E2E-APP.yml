@@ -1,0 +1,61 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+variables:
+- template: configurations/configuration.variables.yml
+- template: configurations/configuration-app-DEV.variables.yml
+
+
+pool:
+  vmImage: $(vmImageName)
+
+
+stages:
+  
+  - stage: Build
+    displayName: build
+    jobs:
+    - template: templates/build-code.template.yml
+      
+  
+  - stage: deployapp_dev
+    displayName: 'Deploy DEV Environment'
+    dependsOn: Build
+    variables:
+  - template: configurations/configuration-app-DEV.variables.yml
+    jobs:
+    - template: templates/deploy-env-code.template.yml
+      parameters:
+      environment: approval
+      serviceConnection: $(SERVICECONNECTION_RG)
+      appname: $(APP_NAME)
+
+
+    - stage: deployapp_qa
+    displayName: 'Deploy QA Environment'
+    dependsOn: Build
+    variables:
+  - template: configurations/configuration-app-QA.variables.yml
+    jobs:
+    - template: templates/deploy-env-code.template.yml
+      parameters:
+      environment: E2E-APP-QA
+      serviceConnection: $(SERVICECONNECTION_RG)
+      appname: $(APP_NAME)    
+   
+
+    - stage: deployapp_prod
+    displayName: 'Deploy PROD Environment'
+    dependsOn: Build
+    variables:
+  - template: configurations/configuration-app-PROD.variables.yml
+    jobs:
+    - template: templates/deploy-env-code.template.yml
+      parameters:
+      environment: E2E-APP-PROD
+      serviceConnection: $(SERVICECONNECTION_RG)
+      appname: $(APP_NAME)   

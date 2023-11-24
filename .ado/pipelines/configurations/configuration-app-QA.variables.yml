@@ -1,0 +1,4 @@
+variables:
+  # QA Environment
+  APP_NAME: ""
+  SUBSCRIPTIONID: "eb9feab1-82b5-481c-9c7f-2acb5c2e6a59"

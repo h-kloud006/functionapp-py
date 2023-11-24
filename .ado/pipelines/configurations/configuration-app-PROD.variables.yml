@@ -1,0 +1,4 @@
+variables:
+  # PROD Environment
+  APP_NAME: ""
+  SUBSCRIPTIONID: "531b7d12-fb78-497c-bd32-d1eda892743b"

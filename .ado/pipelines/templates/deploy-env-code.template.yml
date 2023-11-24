@@ -1,0 +1,37 @@
+parameters:
+- name: environment
+  type: string
+- name: serviceConnection
+  type: string
+- name: appname
+  type: string
+
+jobs:
+ - deployment: Approval_Task
+   displayName: E2E_app_deployment
+   environment: ${{parameters.environment}}
+   strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: AzureFunctionApp@1
+              displayName: Deploy package to function
+              inputs:
+                azureSubscription: ${{parameters.serviceConnection}}
+                appType: 'functionAppLinux'
+                appName: ${{parameters.appname}}
+                package:  '$(Pipeline.Workspace)/drop/build$(Build.BuildId).zip'
+                #$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip
+               #runtimeStack: 'PYTHON|3.9'
+
+
+
+
+
+
+
+
+
+
+
+
