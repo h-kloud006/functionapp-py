@@ -1,5 +1,4 @@
 
-    jobs:
     - job: Build
       displayName: Build stage
       steps:
