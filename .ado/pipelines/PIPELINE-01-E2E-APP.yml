@@ -15,7 +15,6 @@ pool:
 
 
 stages:
-  
   - stage: Build
     displayName: 'build'
     jobs:
@@ -26,7 +25,7 @@ stages:
     displayName: 'Deploy DEV Environment'
     dependsOn: Build
     variables:
-  - template: configurations/configuration-app-DEV.variables.yml
+    - template: configurations/configuration-app-DEV.variables.yml
     jobs:
     - template: templates/deploy-env-code.template.yml
       parameters:
@@ -35,11 +34,11 @@ stages:
       appname: $(APP_NAME)
 
 
-    - stage: deployapp_qa
+  - stage: deployapp_qa
     displayName: 'Deploy QA Environment'
     dependsOn: Build
     variables:
-  - template: configurations/configuration-app-QA.variables.yml
+    - template: configurations/configuration-app-QA.variables.yml
     jobs:
     - template: templates/deploy-env-code.template.yml
       parameters:
@@ -48,11 +47,11 @@ stages:
       appname: $(APP_NAME)    
    
 
-    - stage: deployapp_prod
+  - stage: deployapp_prod
     displayName: 'Deploy PROD Environment'
     dependsOn: Build
     variables:
-  - template: configurations/configuration-app-PROD.variables.yml
+    - template: configurations/configuration-app-PROD.variables.yml
     jobs:
     - template: templates/deploy-env-code.template.yml
       parameters:
