@@ -42,7 +42,7 @@ stages:
     jobs:
     - template: templates/deploy-env-code.template.yml
       parameters:
-        environment: E2E-APP-QA
+        environment: approval
         serviceConnection: $(SERVICECONNECTION_RG)
         appname: $(APP_NAME)    
    
@@ -55,6 +55,6 @@ stages:
     jobs:
     - template: templates/deploy-env-code.template.yml
       parameters:
-        environment: E2E-APP-PROD
+        environment: approval
         serviceConnection: $(SERVICECONNECTION_RG)
         appname: $(APP_NAME)   
